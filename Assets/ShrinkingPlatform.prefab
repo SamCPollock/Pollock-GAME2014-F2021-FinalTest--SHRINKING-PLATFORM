@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6aa61bd819322c4e8337cefaf1c287a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rateOfShrink: 0.99
+  rateOfShrink: 0.995
   waitTimeBeforeGrowing: 2
 --- !u!95 &454129592949670641
 Animator:
