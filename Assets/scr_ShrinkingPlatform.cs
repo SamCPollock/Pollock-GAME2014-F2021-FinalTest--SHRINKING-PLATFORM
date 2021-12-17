@@ -13,11 +13,14 @@ public class scr_ShrinkingPlatform : MonoBehaviour
 
     private bool isShrinking = false;
     private float timeSincePlayerContact = 0;
+    private AudioSource[] audioSources; 
+
 
 
     private void Start()
     {
         animator = GetComponentInParent<Animator>();
+        audioSources = gameObject.GetComponents<AudioSource>();
         //centerOfPlatform = gameObject.transform.GetChild(0).gameObject;
     }
 
@@ -35,6 +38,8 @@ public class scr_ShrinkingPlatform : MonoBehaviour
             if (timeSincePlayerContact >= waitTimeBeforeGrowing && gameObject.transform.localScale.x < 1f)
             {
                 gameObject.transform.localScale *= (2 - rateOfShrink);
+                if (!audioSources[1].isPlaying)
+                    audioSources[1].Play();
             }
         }
 
@@ -63,6 +68,7 @@ public class scr_ShrinkingPlatform : MonoBehaviour
     private void StartShrinking()
     {
         isShrinking = true;
+        audioSources[0].Play();
     }
 
     private void StopShrinking()
@@ -70,5 +76,6 @@ public class scr_ShrinkingPlatform : MonoBehaviour
         Debug.Log("PLAYER HAS LEFT THE PLATORM");
         isShrinking = false;
         timeSincePlayerContact = 0;
+        audioSources[0].Stop();
     }
 }
